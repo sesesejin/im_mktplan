@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>도깨비의세계 방송인 확인 명단</title>
+  <style>
+    :root{--ink:#17201c;--muted:#68736d;--paper:#f5f2ea;--card:#fffdf8;--line:#ded8ca;--green:#176b4b;--green2:#dff1e8;--amber:#9a5b08;--amber2:#fff0ce;--blue:#295ea8;--blue2:#e6effd}
+    *{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font-family:"Pretendard","Noto Sans KR",system-ui,sans-serif}
+    .wrap{max-width:1440px;margin:0 auto;padding:34px 34px 50px}.hero{display:grid;grid-template-columns:1.6fr 1fr;gap:24px;align-items:end;border-bottom:2px solid var(--ink);padding-bottom:22px}
+    .eyebrow{font-size:13px;font-weight:800;color:var(--green);letter-spacing:.12em}.hero h1{margin:7px 0 8px;font-size:40px;line-height:1.08;letter-spacing:-.04em}.hero p{margin:0;color:var(--muted);font-size:15px;line-height:1.65}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{background:var(--ink);color:white;padding:16px;border-radius:14px}.stat b{display:block;font-size:26px}.stat span{font-size:12px;color:#cdd7d2}
+    .toolbar{display:flex;gap:9px;align-items:center;margin:18px 0 14px;flex-wrap:wrap}.toolbar input{min-width:230px;flex:1;max-width:430px;border:1px solid var(--line);background:white;border-radius:10px;padding:11px 13px;font-size:14px}.filter{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:9px 13px;font-weight:750;cursor:pointer}.filter.active{background:var(--green);color:white;border-color:var(--green)}
+    .legend{margin-left:auto;color:var(--muted);font-size:12px}.table{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}.head,.row{display:grid;grid-template-columns:44px 116px 104px 132px 220px minmax(210px,1fr) 145px;gap:10px;align-items:center}.head{padding:11px 15px;background:#ece7dc;color:var(--muted);font-size:12px;font-weight:800}.row{min-height:66px;padding:9px 15px;border-top:1px solid #ebe6db}.row:hover{background:#faf7ef}.num{color:#9b9487;font-variant-numeric:tabular-nums}.name{font-weight:850}.kind,.platform{display:inline-flex;align-items:center;width:max-content;max-width:100%;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:800;white-space:normal}.kind.reserve{background:var(--green2);color:var(--green)}.kind.broadcast{background:var(--amber2);color:var(--amber)}.platform{background:var(--blue2);color:var(--blue)}.size{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;width:100%;min-width:0;border-radius:12px;padding:7px 10px;line-height:1.2}.size b{font-size:12px}.size small{display:block;margin-top:3px;font-size:11px;font-weight:750;white-space:normal;overflow-wrap:anywhere}.size.large{background:#35255f;color:#fff}.size.upper{background:#e7dcff;color:#56399b}.size.mid{background:#dceaf8;color:#285d91}.size.small{background:#ecebe7;color:#62665f}.proof{min-width:0;font-size:13px;color:#3f4944;white-space:normal;line-height:1.45}.links{display:flex;gap:6px;flex-wrap:wrap}.links a{color:var(--ink);font-size:12px;font-weight:800;text-decoration:none;border-bottom:1px solid #9ca59f}.links a:hover{color:var(--green)}
+    .note{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:15px}.note>div{border:1px solid var(--line);background:rgba(255,255,255,.55);border-radius:13px;padding:14px 16px}.note b{display:block;margin-bottom:5px}.note p{margin:0;color:var(--muted);font-size:12px;line-height:1.55}.empty{display:none;padding:35px;text-align:center;color:var(--muted)}
+    @media(max-width:1100px){.wrap{padding:22px 14px}.hero{grid-template-columns:1fr}.hero h1{font-size:32px}.head{display:none}.row{grid-template-columns:38px minmax(0,1fr) auto;gap:7px 10px;padding:13px 14px}.row .platform,.row .size,.row .proof,.row .links{grid-column:2 / 4}.row .kind{grid-column:3}.row .size{max-width:360px}.legend{width:100%;margin-left:0}.note{grid-template-columns:1fr}}
+    @media print{body{background:white}.wrap{max-width:none;padding:12mm}.toolbar{display:none}.hero h1{font-size:28px}.row{min-height:0;padding:5px 10px}.note{break-inside:avoid}}
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <div class="eyebrow">PUBLIC VOD VERIFIED · 2026.09.28</div>
+      <h1>도깨비의세계 방송인<br>확인 명단</h1>
+      <p>SOOP·치지직·유튜브의 공개 다시보기 제목과 라이브 표시를 직접 확인해 중복 계정을 합쳤습니다. 이름을 누르는 대신 오른쪽 플랫폼 링크로 근거 영상을 바로 열 수 있습니다.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><b id="totalStat">46</b><span>확정 방송인</span></div>
+      <div class="stat"><b>26</b><span>사전 선점·문파</span></div>
+      <div class="stat"><b>20</b><span>시연·소개 방송</span></div>
+    </div>
+  </section>
+
+  <section class="toolbar">
+    <input id="search" type="search" placeholder="이름 또는 방송 내용 검색">
+    <button class="filter active" data-filter="all">전체 46</button>
+    <button class="filter" data-filter="reserve">사전 선점 26</button>
+    <button class="filter" data-filter="broadcast">시연·방송 20</button>
+    <span class="legend">규모: 구독자·즐겨찾기·팔로워 기준</span>
+  </section>
+
+  <section class="table">
+    <div class="head"><span>번호</span><span>방송인</span><span>구분</span><span>확인 플랫폼</span><span>방송 규모</span><span>확인 내용</span><span>근거 영상</span></div>
+    <div id="rows"></div><div class="empty" id="empty">검색 결과가 없습니다.</div>
+  </section>
+
+  <section class="note">
+    <div><b>표현 기준</b><p>현재는 10월 8일 정식 출시 전이므로 ‘캐릭터 생성’으로 불린 방송도 실제로는 서버·캐릭터명 사전 선점입니다. 실제 플레이 캐릭터 생성과 구분했습니다.</p></div>
+    <div><b>방송 규모 기준</b><p>2026년 9월 28일 공개된 SOOP 즐겨찾기·치지직 팔로워·유튜브 구독자 수 중 확인 가능한 주력 채널 수치로 분류했습니다. 대형 30만+, 중대형 10만~30만, 중형 3만~10만, 소형 3만 미만입니다. 플랫폼별 지표 성격이 달라 대략적인 규모 비교용입니다.</p></div>
+    <div><b>제외·보류</b><p>OST 반응, 제3자 재업로드 클립, 광고 명단만 있는 경우는 제외했습니다. 그린노트TV는 치지직 게임 카테고리 기록은 있으나 제목이 일반적이라 보류했습니다. 삭제·비공개 영상은 검색할 수 없습니다.</p></div>
+  </section>
+</main>
+<script>
+const people = [
+{n:'정윤종',k:'reserve',p:'SOOP',d:'해월1 서버 캐릭터명 선점',s:[['SOOP','https://vod.sooplive.com/player/207816527']]},
+{n:'문월',k:'reserve',p:'SOOP',d:'해월3 서버 닉네임 선점',s:[['SOOP','https://vod.sooplive.com/player/207819339']]},
+{n:'뜨뜨뜨뜨',k:'reserve',p:'SOOP',d:'해월3 서버 문파 창설',s:[['SOOP','https://vod.sooplive.com/player/207824433']]},
+{n:'프레이',k:'reserve',p:'SOOP',d:'해월1 서버 캐릭터명 선점',s:[['SOOP','https://vod.sooplive.com/player/207816499']]},
+{n:'킴나니',k:'reserve',p:'SOOP',d:'사전예약 및 닉네임 선정',s:[['SOOP','https://vod.sooplive.com/player/207817141']]},
+{n:'팡이요',k:'reserve',p:'SOOP',d:'사전 서버·캐릭터 선점',s:[['SOOP','https://vod.sooplive.com/player/207815911']]},
+{n:'듀단',k:'reserve',p:'SOOP',d:'방송 중 캐릭터명 선점 진행',s:[['SOOP','https://vod.sooplive.com/player/207863827']]},
+{n:'아뚱',k:'reserve',p:'SOOP',d:'닉네임 선점 방송',s:[['SOOP','https://vod.sooplive.com/player/207814013']]},
+{n:'기래민',k:'reserve',p:'SOOP',d:'도깨비의세계 닉네임 결정',s:[['SOOP','https://vod.sooplive.com/player/207938141']]},
+{n:'팥순',k:'reserve',p:'SOOP · YouTube',d:'몽련1 서버 캐릭터명 선점',s:[['SOOP','https://vod.sooplive.com/player/207814581'],['YouTube','https://www.youtube.com/watch?v=VM2sX84yRYw']]},
+{n:'도칠',k:'reserve',p:'SOOP · YouTube',d:'해월1 서버 캐릭터명 1·2차 선점',s:[['SOOP','https://vod.sooplive.com/player/207816551'],['YouTube','https://www.youtube.com/watch?v=U1xk0eSJv5A']]},
+{n:'주드',k:'reserve',p:'SOOP',d:'해월3 서버 사전예약 방송 구간',s:[['SOOP','https://vod.sooplive.com/player/207852007?change_second=8267']]},
+{n:'팡지훈',k:'reserve',p:'CHZZK · YouTube',d:'해월1 서버 외자 닉네임 선점',s:[['CHZZK','https://chzzk.naver.com/video/15324019'],['YouTube','https://www.youtube.com/watch?v=8F_35xaNfNc']]},
+{n:'센터로드',k:'reserve',p:'CHZZK · YouTube',d:'서버·캐릭터 사전 선점',s:[['CHZZK','https://chzzk.naver.com/video/15325274'],['YouTube','https://www.youtube.com/watch?v=4lCb3-h3lIg']]},
+{n:'광휘',k:'reserve',p:'CHZZK · YouTube',d:'서버 및 아이디 선점',s:[['CHZZK','https://chzzk.naver.com/video/15323969'],['YouTube','https://www.youtube.com/watch?v=cGYJ6W7xxYs']]},
+{n:'어둠의상인',k:'reserve',p:'CHZZK · YouTube',d:'해월1 서버 한 글자 이름 선점',s:[['CHZZK','https://chzzk.naver.com/video/15324176'],['YouTube','https://www.youtube.com/watch?v=-Tz0r4kChXc']]},
+{n:'두댕',k:'reserve',p:'CHZZK',d:'괴량1 서버 선점',s:[['CHZZK','https://chzzk.naver.com/video/15327949']]},
+{n:'김호러',k:'reserve',p:'CHZZK',d:'사전 생성 방송',s:[['CHZZK','https://chzzk.naver.com/video/15326316']]},
+{n:'은백곰',k:'reserve',p:'CHZZK',d:'닉네임 결정 방송',s:[['CHZZK','https://chzzk.naver.com/video/15324623']]},
+{n:'윤쿵쿵TV',k:'reserve',p:'SOOP · CHZZK · YouTube',d:'캐릭터명 선점 대기 및 시연회 방송',s:[['SOOP','https://vod.sooplive.com/player/207815829'],['CHZZK','https://chzzk.naver.com/video/15323685'],['YouTube','https://www.youtube.com/watch?v=ooulJBwI6Ws']]},
+{n:'쵸피',k:'reserve',p:'YouTube',d:'무이1 서버·캐릭터명 사전 선점 라이브',s:[['YouTube','https://www.youtube.com/watch?v=Q0jDziQZU58']]},
+{n:'스텝튜브',k:'reserve',p:'YouTube',d:'아산1 서버 외자 아이디 사전 생성',s:[['YouTube','https://www.youtube.com/watch?v=ViuqT3NDi1Q']]},
+{n:'창구',k:'reserve',p:'YouTube',d:'2차 닉네임 선점 라이브',s:[['YouTube','https://www.youtube.com/watch?v=yYKl166gS2E']]},
+{n:'맛나는꼬꼬',k:'reserve',p:'YouTube',d:'무이1 서버 캐릭터명 사전 선점',s:[['YouTube','https://www.youtube.com/watch?v=i_nPwokQTzc']]},
+{n:'진환튜브',k:'reserve',p:'YouTube',d:'공월아2 서버 캐릭터 선점',s:[['YouTube','https://www.youtube.com/watch?v=PQQyPuCnumw']]},
+{n:'김민교',k:'reserve',p:'SOOP',d:'방송 중 도깨비의세계 사전예약 진행',s:[['SOOP','https://vod.sooplive.com/player/207814363']]},
+{n:'감스트',k:'broadcast',p:'SOOP',d:'도깨비의세계 주제 방송 VOD',s:[['SOOP','https://vod.sooplive.com/player/207819389']]},
+{n:'와꾸대장봉준',k:'broadcast',p:'SOOP',d:'도깨비의세계 방송 참여 · 사용자 확인',s:[['SOOP 채널','https://www.sooplive.com/station/khm11903']]},
+{n:'이지상',k:'broadcast',p:'SOOP',d:'라이브 시연회 같이보기',s:[['SOOP','https://vod.sooplive.com/player/207468247']]},
+{n:'지피티',k:'broadcast',p:'SOOP',d:'도깨비의세계 감스트문파 방송',s:[['SOOP','https://vod.sooplive.com/player/207817591']]},
+{n:'쥬댕',k:'broadcast',p:'SOOP · YouTube',d:'라이브 시연회 다시보기 방송',s:[['SOOP','https://vod.sooplive.com/player/207491441'],['YouTube','https://www.youtube.com/watch?v=I_5V0u5tpQo']]},
+{n:'미남용사',k:'broadcast',p:'CHZZK · YouTube',d:'라이브 시연회 같이보기',s:[['CHZZK','https://chzzk.naver.com/video/15258142'],['YouTube','https://www.youtube.com/watch?v=fDXZZEM04pg']]},
+{n:'커두목',k:'broadcast',p:'CHZZK',d:'쇼케이스 같이보기',s:[['CHZZK','https://chzzk.naver.com/video/15258030']]},
+{n:'한서하',k:'broadcast',p:'CHZZK',d:'시연 영상 같이보기',s:[['CHZZK','https://chzzk.naver.com/video/15325016']]},
+{n:'갓김치님',k:'broadcast',p:'CHZZK',d:'「도깨비의 세계 탐험」 VOD',s:[['CHZZK','https://chzzk.naver.com/video/15327562']]},
+{n:'바보마ㅛ',k:'broadcast',p:'CHZZK',d:'함께할 사람 모집 방송',s:[['CHZZK','https://chzzk.naver.com/video/15338092']]},
+{n:'배돈',k:'broadcast',p:'YouTube · CHZZK',d:'게임 쇼케이스 분석 방송',s:[['YouTube','https://www.youtube.com/watch?v=VpVC3YmBoUg']]},
+{n:'쌀먹군단장',k:'broadcast',p:'YouTube',d:'라이브 시연회 같이보기',s:[['YouTube','https://www.youtube.com/watch?v=-vSV19Ndczc']]},
+{n:'몽키',k:'broadcast',p:'YouTube',d:'공식 쇼케이스 같이보기 라이브',s:[['YouTube','https://www.youtube.com/watch?v=6-scO7isQ8Q']]},
+{n:'박다솜',k:'broadcast',p:'YouTube',d:'쇼케이스 같이보기 라이브',s:[['YouTube','https://www.youtube.com/watch?v=DX42Fy9eHOE']]},
+{n:'강모찌',k:'broadcast',p:'YouTube',d:'시연회·쇼케이스 같이보기',s:[['YouTube','https://www.youtube.com/watch?v=mlV9nTUQEzI']]},
+{n:'머핀',k:'broadcast',p:'YouTube',d:'라이브 시연회 같이보기',s:[['YouTube','https://www.youtube.com/watch?v=kKS0rUxiH2s']]},
+{n:'투즈TV',k:'broadcast',p:'YouTube',d:'라이브 시연회 및 BM 공개 방송',s:[['YouTube','https://www.youtube.com/watch?v=lV69RCF7MQI']]},
+{n:'강우',k:'broadcast',p:'YouTube',d:'라이브 시연회 같이보기',s:[['YouTube','https://www.youtube.com/watch?v=jyJPFRrvMkc']]},
+{n:'집사입니다',k:'broadcast',p:'YouTube',d:'시연회 같이보기 라이브',s:[['YouTube','https://www.youtube.com/watch?v=jOW8qjAkpPU']]},
+{n:'리나양',k:'broadcast',p:'YouTube',d:'라이브 시연회 리뷰 및 해월2 서버 모집',s:[['YouTube','https://www.youtube.com/watch?v=mYuNFkGaptY']]}
+];
+const audience={
+'정윤종':[155000,'SOOP 즐찾 15.5만'],'문월':[208000,'SOOP 즐찾 20.8만'],'뜨뜨뜨뜨':[465000,'SOOP 즐찾 46.5만'],'프레이':[330000,'SOOP 즐찾 33만'],'킴나니':[21000,'SOOP 즐찾 2.1만'],'팡이요':[524000,'SOOP 즐찾 52.4만'],'듀단':[128000,'SOOP 즐찾 12.8만'],'아뚱':[28000,'SOOP 즐찾 2.8만'],'기래민':[43000,'SOOP 즐찾 4.3만'],'팥순':[49000,'SOOP 즐찾 4.9만 · YT 4.05만'],'도칠':[57300,'YT 구독 5.73만 · SOOP 1.8천'],'주드':[6100,'SOOP 즐찾 6.1천'],'팡지훈':[42800,'YT 구독 4.28만 · CHZZK 90'],'센터로드':[204000,'YT 구독 20.4만 · CHZZK 5천'],'광휘':[26500,'YT 구독 2.65만 · CHZZK 2.6천'],'어둠의상인':[96300,'YT 구독 9.63만 · CHZZK 20'],'두댕':[318,'CHZZK 팔로워 318'],'김호러':[4700,'CHZZK 팔로워 4.7천'],'은백곰':[1100,'CHZZK 팔로워 1.1천'],'윤쿵쿵TV':[41000,'YT 구독 4.1만 · CHZZK 306'],'쵸피':[136000,'YT 구독 13.6만'],'스텝튜브':[22300,'YT 구독 2.23만'],'창구':[41300,'YT 구독 4.13만'],'맛나는꼬꼬':[55000,'YT 구독 5.5만'],'진환튜브':[62500,'YT 구독 6.25만'],'감스트':[1100000,'SOOP 즐찾 110만'],'와꾸대장봉준':[746000,'SOOP 즐찾 74.6만'],'김민교':[435000,'SOOP 즐찾 43.5만'],'이지상':[103000,'SOOP 즐찾 10.3만'],'지피티':[77000,'SOOP 즐찾 7.7만'],'쥬댕':[1640,'YT 구독 1.64천 · SOOP 45'],'미남용사':[27400,'YT 구독 2.74만 · CHZZK 731'],'커두목':[3100,'CHZZK 팔로워 3.1천'],'한서하':[540,'CHZZK 팔로워 540'],'갓김치님':[75,'CHZZK 팔로워 75'],'바보마ㅛ':[82,'CHZZK 팔로워 82'],'배돈':[166000,'YT 구독 16.6만'],'쌀먹군단장':[15000,'YT 구독 1.5만'],'몽키':[106000,'YT 구독 10.6만'],'박다솜':[106000,'YT 구독 10.6만'],'강모찌':[1550,'YT 구독 1.55천'],'머핀':[2280,'YT 구독 2.28천'],'투즈TV':[126000,'YT 구독 12.6만'],'강우':[42300,'YT 구독 4.23만'],'집사입니다':[7740,'YT 구독 7.74천'],'리나양':[23600,'YT 구독 2.36만']
+};
+function scale(name){const [v,label]=audience[name]||[0,'미확인'];if(v>=300000)return['large','대형',label];if(v>=100000)return['upper','중대형',label];if(v>=30000)return['mid','중형',label];return['small','소형',label]}
+const rows=document.querySelector('#rows'),search=document.querySelector('#search'),empty=document.querySelector('#empty');let active='all';
+function draw(){const q=search.value.trim().toLowerCase();const list=people.filter(x=>(active==='all'||x.k===active)&&(`${x.n} ${x.p} ${x.d}`.toLowerCase().includes(q)));rows.innerHTML=list.map((x,i)=>{const [sc,st,sv]=scale(x.n);return `<div class="row"><span class="num">${String(i+1).padStart(2,'0')}</span><span class="name">${x.n}</span><span class="kind ${x.k}">${x.k==='reserve'?'사전 선점':'시연·방송'}</span><span class="platform">${x.p}</span><span class="size ${sc}" title="${sv}"><b>${st}</b><small>${sv}</small></span><span class="proof" title="${x.d}">${x.d}</span><span class="links">${x.s.map(([n,u])=>`<a href="${u}" target="_blank" rel="noreferrer">${n} ↗</a>`).join('')}</span></div>`}).join('');empty.style.display=list.length?'none':'block'}
+document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{document.querySelector('.filter.active').classList.remove('active');b.classList.add('active');active=b.dataset.filter;draw()}));search.addEventListener('input',draw);draw();
+</script>
+</body>
+</html>
