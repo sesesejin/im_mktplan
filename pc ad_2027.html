@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2027 PC방 광고 이슈 시점 집행 시 비용·효과 예측</title>
+<style>
+:root{
+  --page:#f2f5f9;--paper:#fff;--ink:#1f2a44;--ink2:#56607a;--ink3:#97a0b3;
+  --rule:#e9edf3;--soft:#f7f9fc;--blue:#3b82e0;--blue-soft:#eef5fe;--blue-tint:#e4effc;--orange:#f08a5d;--violet:#7b68d9;
+  --orange-soft:#fef3ee;--violet-soft:#f2f0fc;
+  --neg:#d1493f;--neg-soft:#fdf0ee;--pos:#2e8b57;--pos-soft:#ecf7f0;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--page);color:var(--ink);font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-size:15px;line-height:1.75;word-break:keep-all;font-feature-settings:"tnum"}
+.doc{max-width:940px;margin:40px auto 64px;background:var(--paper);border-radius:22px;overflow:hidden;box-shadow:0 20px 50px -30px rgba(31,42,68,.25)}
+
+.cover{background:var(--blue-tint);padding:56px 60px 0;position:relative;overflow:hidden}
+.cover::after{content:"";position:absolute;right:-80px;top:-90px;width:300px;height:300px;border-radius:50%;background:#d6e6fa;opacity:.7}
+.cover>*{position:relative;z-index:1}
+.cover h1{margin:0;font-size:30px;line-height:1.4;font-weight:700;letter-spacing:-.5px;color:var(--ink)}
+.cover .lead{margin:14px 0 0;font-size:16px;color:var(--ink2);max-width:680px}
+.cover .meta{display:flex;gap:10px;margin-top:26px;padding:0 0 26px;font-size:13px;color:var(--ink2)}
+.cover .meta span{background:rgba(255,255,255,.75);border-radius:999px;padding:5px 14px}
+.cover .meta b{color:var(--ink);font-weight:600;margin-left:6px}
+
+.outlook{padding:36px 60px 40px}
+.outlook h2{margin:0 0 2px;font-size:18px;font-weight:700}
+.outlook .sub{margin:0 0 20px;color:var(--ink2);font-size:13.5px}
+.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.ph{padding:18px 20px 20px;border-radius:16px;background:var(--soft)}
+.ph:first-child{background:var(--blue-soft)}
+.ph .when{font-size:13.5px;color:var(--ink);font-weight:600}
+.ph .date{font-size:12px;color:var(--ink3)}
+.ph .num{font-size:28px;font-weight:700;letter-spacing:-.6px;margin-top:10px;line-height:1.1}
+.ph .num small{font-size:14px;font-weight:600;margin-left:2px;color:var(--ink2)}
+.ph .rate{font-size:14px;font-weight:600;margin-top:4px}
+.bar{height:8px;background:#e6ebf2;border-radius:999px;margin:14px 0 10px;position:relative}
+.bar span{position:absolute;left:0;top:0;bottom:0;border-radius:999px;background:var(--orange)}
+.ph:first-child .bar span{background:var(--blue)}
+.ph.b .bar span{background:var(--violet)}
+.ph .amt{font-size:12.5px;color:var(--ink2);display:flex;justify-content:space-between}
+.ph .amt b{color:var(--ink);font-weight:600}
+.neg{color:var(--neg)}.pos{color:var(--pos)}
+
+.points{margin:24px 0 0;padding:18px 22px;list-style:none;display:grid;gap:8px;background:var(--soft);border-radius:16px}
+.points li{display:grid;grid-template-columns:18px 1fr;gap:6px;font-size:14.5px}
+.points li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--blue);margin:10px 0 0 4px}
+.points li.key{font-weight:600}
+.points li.key::before{background:var(--neg)}
+
+main{padding:0 60px 52px}
+section{padding-top:44px}
+h2.sec{display:flex;align-items:center;gap:12px;margin:0 0 4px;font-size:19px;font-weight:700;letter-spacing:-.3px}
+h2.sec .n{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--blue-tint);color:var(--blue);font-size:13.5px;font-weight:700}
+.secLead{margin:0 0 18px 40px;color:var(--ink2);font-size:14px}
+h3{margin:26px 0 10px;font-size:15px;font-weight:600}
+ul.b{margin:0;padding-left:18px}ul.b li{margin:3px 0}ul.b ul{margin:3px 0;padding-left:18px;color:var(--ink2)}
+ul.b li::marker{color:var(--blue)}
+
+dl.facts{display:grid;grid-template-columns:120px 1fr;margin:0;background:var(--soft);border-radius:16px;padding:6px 22px}
+dl.facts dt,dl.facts dd{margin:0;padding:12px 0;border-bottom:1px solid var(--rule)}
+dl.facts dt:last-of-type,dl.facts dd:last-of-type{border-bottom:0}
+dl.facts dt{font-weight:600;font-size:14px;color:var(--ink2)}
+dl.facts dd{font-size:14.5px}
+dl.facts dd ul{margin:2px 0 0;padding-left:16px;color:var(--ink2)}
+
+.tbl{border:1px solid var(--rule);border-radius:16px;overflow:hidden;margin:6px 0}
+table{width:100%;border-collapse:collapse;font-size:14px}
+thead th{font-size:12.5px;font-weight:600;color:var(--ink2);text-align:right;padding:11px 14px;background:var(--soft);border-bottom:1px solid var(--rule);white-space:nowrap}
+tbody td{padding:11px 14px;text-align:right;border-bottom:1px solid var(--rule)}
+tbody tr:last-child td{border-bottom:0}
+th:first-child,td:first-child{text-align:left;white-space:nowrap}
+tbody tr.base td{background:var(--soft);font-weight:600}
+tbody tr.sum td{background:var(--blue-soft);font-weight:600}
+td .chip{display:inline-block;padding:1px 9px;border-radius:999px;font-weight:600;font-size:12.5px}
+.chip.neg{background:var(--neg-soft)}.chip.pos{background:var(--pos-soft)}
+td.l{text-align:left}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;border-radius:6px;padding:0 7px;margin-right:6px}
+.tag.a{background:var(--orange-soft);color:var(--orange)}.tag.b{background:var(--violet-soft);color:var(--violet)}
+
+.compare{display:grid;grid-template-columns:110px 1fr 1fr;font-size:14px;border:1px solid var(--rule);border-radius:16px;overflow:hidden}
+.compare>div{padding:12px 16px;border-bottom:1px solid var(--rule)}
+.compare>div:nth-last-child(-n+3){border-bottom:0}
+.compare .hd{font-weight:700;font-size:14.5px;padding-top:14px;background:var(--soft)}
+.compare .hd small{display:block;font-size:12px;color:var(--ink3);font-weight:500}
+.compare .k{font-weight:600;color:var(--ink2);font-size:13px}
+.compare .hd.ca{background:var(--orange-soft)}.compare .hd.cb{background:var(--violet-soft)}
+
+.panel{border:1px solid var(--rule);border-radius:18px;padding:20px 22px 16px;margin:14px 0}
+.panel-hd .t{font-weight:600;font-size:14.5px}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--ink2);margin:8px 0 14px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:6px}
+.cap{font-size:12.5px;color:var(--ink3);margin:10px 0 0}
+
+.tl-row{display:grid;grid-template-columns:62px 1fr 52px;align-items:center;gap:12px;margin:10px 0}
+.tl-row .lb{font-size:13px;font-weight:600;color:var(--ink2)}
+.tl-row .d{font-size:13px;font-weight:600;text-align:right}
+.track{position:relative;height:18px;background:#eef1f6;border-radius:999px;overflow:hidden}
+.track i{position:absolute;top:0;bottom:0;border-radius:999px}
+.track.a i{background:var(--orange)}.track.b i{background:var(--violet)}
+.mon{display:grid;grid-template-columns:62px 1fr 52px;gap:12px}
+.mon div.m{display:grid;grid-template-columns:repeat(12,1fr);font-size:11px;color:var(--ink3)}
+.mon div.m span{border-left:1px solid var(--rule);padding-left:4px}
+
+.findings{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.findings div{padding:16px 18px;background:var(--soft);border-radius:16px}
+.findings b{display:block;font-size:20px;font-weight:700;letter-spacing:-.3px}
+.findings span{font-size:13px;color:var(--ink2)}
+
+.factors{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.factor{padding:20px 22px;border-radius:18px}
+.factor.down{background:var(--pos-soft)}
+.factor.up{background:var(--neg-soft)}
+.factor h3{margin:0 0 8px;font-size:14.5px}
+.factor ul{margin:0;padding-left:18px;font-size:14px}.factor li{margin:3px 0}
+
+.rec{margin:14px 0 0;padding:16px 22px;border-radius:16px;background:var(--blue-soft);font-size:15.5px;font-weight:700;color:var(--ink);display:flex;gap:12px;align-items:center}
+.rec::before{content:"검토 의견";flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--blue);border-radius:999px;padding:2px 10px}
+
+footer{padding:22px 60px 30px;font-size:12px;color:var(--ink3);background:var(--soft)}
+footer p{margin:2px 0}
+
+@media(max-width:760px){
+  .doc{margin:0;border-radius:0}.cover,.outlook,main,footer{padding-left:20px;padding-right:20px}
+  .cover h1{font-size:23px}.cover .meta{flex-wrap:wrap}
+  .phases{grid-template-columns:1fr}
+  .factors,.findings{grid-template-columns:1fr}
+  .secLead{margin-left:0}
+  .compare{grid-template-columns:76px 1fr 1fr;font-size:13px}.compare>div{padding:10px}
+  dl.facts{grid-template-columns:88px 1fr;padding:4px 16px}
+  .tbl{overflow-x:auto}
+}
+@media print{
+  body{background:#fff}.doc{margin:0;box-shadow:none;max-width:none;border-radius:0}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  section{break-inside:avoid-page}
+}
+</style>
+</head>
+<body>
+<article class="doc">
+
+<header class="cover">
+  <h1>2027 PC방 광고<br>이슈 시점 집행 시 비용·효과 예측</h1>
+  <p class="lead">연간 할인 없이 이슈 시점에만 집행하면 신작 기준(A안)은 연 광고비가 40% 줄지만 수익이 46% 줄고, 업데이트까지 포함(B안)하면 비용 절감이 7% 수준에 머물러, 현행 연간 계약을 유지하는 편이 효율 면에서 유리할 것으로 보입니다.</p>
+  <div class="meta"><span>보고일<b>2026. 11. 25.</b></span><span>작성<b>마케팅기획팀 양세진</b></span></div>
+</header>
+
+<div class="outlook">
+  <h2>안별 연 광고비 · 효과 비교</h2>
+  <p class="sub">포레런처(애드바이 포함) 사례 기준 · 연 광고비는 2026년 이슈 패턴 동일 가정, ROAS·순효과는 2026년 1~10월 실적 대입</p>
+  <div class="phases">
+    <div class="ph">
+      <div class="when">연간 계약 (현행)</div><div class="date">365일 · 할인 26.8% 적용</div>
+      <div class="num">3,600<small>만원</small></div><div class="rate" style="color:var(--ink3)">연 광고비</div>
+      <div class="bar"><span style="width:100%"></span></div>
+      <div class="amt"><span>ROAS <b>463%</b></span><span>순효과 <b>1억 879만</b></span></div>
+    </div>
+    <div class="ph">
+      <div class="when">A안 · 신작 오픈 시</div><div class="date">159일 · 할인 미적용</div>
+      <div class="num">2,143<small>만원</small></div><div class="rate pos">-40.5%</div>
+      <div class="bar"><span style="width:59.5%"></span></div>
+      <div class="amt"><span>ROAS <b>357%</b></span><span>순효과 <b>5,363만</b> <span class="neg">-51%</span></span></div>
+    </div>
+    <div class="ph b">
+      <div class="when">B안 · 신작 + 업데이트</div><div class="date">248일 · 할인 미적용</div>
+      <div class="num">3,343<small>만원</small></div><div class="rate pos">-7.1%</div>
+      <div class="bar"><span style="width:92.9%"></span></div>
+      <div class="amt"><span>ROAS <b>377%</b></span><span>순효과 <b>9,120만</b> <span class="neg">-16%</span></span></div>
+    </div>
+  </div>
+  <ul class="points">
+    <li><span>할인 미적용 시 월 단가 300만원 → 410만원(+37%), 연 8.8개월 이상 집행하면 연간 계약이 더 저렴</span></li>
+    <li><span>A안은 비용 1,457만원 절감, 다만 리니지 계열 업데이트 구간(3월 말~5월)이 빠져 수익이 크게 감소</span></li>
+    <li><span>B안은 이슈 기간이 연간의 68%로 손익분기에 근접, 짧은 공백(4~6일)까지 끊기 어려워 실제 절감 효과는 거의 없음</span></li>
+    <li class="key"><span>두 안 모두 연간 집행보다 순효과가 낮아, 현행 연간 계약(3,600만원) 유지가 유리할 것으로 판단</span></li>
+  </ul>
+</div>
+
+<main>
+
+<section>
+  <h2 class="sec"><span class="n">1</span>검토 배경</h2>
+  <p class="secLead">연간 할인 없이 이슈가 있을 때만 광고하는 경우의 비용과 효과를 비교</p>
+  <dl class="facts">
+    <dt>분석 예시</dt><dd>PC방 광고 매체 중 포레런처(애드바이 포함) 사례를 예시로 분석
+      <ul><li>2026년 실적과 2027 연간 제안 금액이 확보된 매체 기준</li></ul></dd>
+    <dt>검토 조건</dt><dd>연간 계약 할인(26%) 미적용 + 이슈 발생 시에만 광고 집행</dd>
+    <dt>검토 항목</dt><dd><ul style="padding-left:16px;margin:0;color:var(--ink)"><li>연 광고비 예측 (vs 연간 계약)</li><li>효과 변동 예측 (vs 연간 집행 ROAS)</li></ul></dd>
+    <dt>비교안</dt><dd><ul style="padding-left:16px;margin:0;color:var(--ink)"><li>A안: 신작 오픈 시에만 집행</li><li>B안: 신작 오픈 + 업데이트 이벤트 시 집행</li></ul></dd>
+  </dl>
+</section>
+
+<section>
+  <h2 class="sec"><span class="n">2</span>전제 조건</h2>
+  <p class="secLead">2027 연간 제안 금액과 2026년 아이템매니아 이벤트 기간을 기준으로 산정</p>
+  <dl class="facts">
+    <dt>2027 연간 제안</dt><dd>공시금액 49,200,000원 → 제안금액 36,000,000원
+      <ul><li>포레런처 인기게임 배너 + 애드바이 엔딩브라우저</li><li>할인율 약 26.8%, VAT 별도</li></ul></dd>
+    <dt>할인 미적용</dt><dd>월 3,000,000원 → 4,100,000원 (+37%)
+      <ul><li>포레런처 월 2,000,000원 + 애드바이 월 2,100,000원</li></ul></dd>
+    <dt>이슈 기간</dt><dd>2026년 이벤트 기간 기준, 중복 일자는 1회만 산정</dd>
+  </dl>
+
+  <div class="panel">
+    <div class="panel-hd"><span class="t">안별 광고 집행 기간 (2026년 기준)</span></div>
+    <div class="legend"><span><i style="background:var(--orange)"></i>A안 신작 오픈</span><span><i style="background:var(--violet)"></i>B안 신작 + 업데이트</span></div>
+    <div class="mon"><div></div><div class="m"><span>1월</span><span>2월</span><span>3월</span><span>4월</span><span>5월</span><span>6월</span><span>7월</span><span>8월</span><span>9월</span><span>10월</span><span>11월</span><span>12월</span></div><div></div></div>
+    <div class="tl-row"><span class="lb">A안</span>
+      <div class="track a"><i style="left:5.21%;width:16.44%"></i><i style="left:46.03%;width:7.67%"></i><i style="left:64.93%;width:19.45%"></i></div>
+      <span class="d">159일</span></div>
+    <div class="tl-row"><span class="lb">B안</span>
+      <div class="track b"><i style="left:5.21%;width:32.33%"></i><i style="left:46.03%;width:7.67%"></i><i style="left:55.34%;width:8.49%"></i><i style="left:64.93%;width:19.45%"></i></div>
+      <span class="d">248일</span></div>
+    <p class="cap">비이슈 기간: 1. 1.~1. 19. / 5. 18.~6. 17. / 7. 16.~7. 21.(6일) / 8. 22.~8. 25.(4일) / 11. 5.~12. 31.</p>
+  </div>
+
+  <div class="tbl"><table>
+    <thead><tr><th>구분</th><th>이벤트</th><th>기간</th><th>일수</th></tr></thead>
+    <tbody>
+    <tr><td><span class="tag a">A</span>신작</td><td class="l">리니지 클래식 사전예약 · 오픈</td><td>1. 20.~3. 20.</td><td>60일</td></tr>
+    <tr><td><span class="tag a">A</span>신작</td><td class="l">솔:인챈트 오픈</td><td>6. 18.~7. 15.</td><td>28일</td></tr>
+    <tr><td><span class="tag a">A</span>신작</td><td class="l">제우스 → 이클립스 → 도깨비의세계 오픈</td><td>8. 26.~11. 4.</td><td>71일</td></tr>
+    <tr class="base"><td>A안 합계</td><td class="l">연간의 44%</td><td></td><td>159일</td></tr>
+    <tr><td><span class="tag b">B</span>업데이트</td><td class="l">리니지M ContiNew 업데이트</td><td>3. 18.~5. 17.</td><td rowspan="3">+89일</td></tr>
+    <tr><td><span class="tag b">B</span>업데이트</td><td class="l">로드나인 디나페리(신규 서버)</td><td>3. 27.~4. 23.</td></tr>
+    <tr><td><span class="tag b">B</span>업데이트</td><td class="l">리니지 클래식 업데이트</td><td>7. 22.~8. 21.</td></tr>
+    <tr class="sum"><td>B안 합계</td><td class="l">연간의 68%</td><td></td><td>248일</td></tr>
+    </tbody></table></div>
+  <p class="cap">로드나인 디나페리 기간은 리니지M ContiNew 기간에 포함되어 일수 변동 없음</p>
+</section>
+
+<section>
+  <h2 class="sec"><span class="n">3</span>연 광고비 예측</h2>
+  <p class="secLead">2027년 이슈 패턴이 2026년과 같다고 가정</p>
+  <div class="tbl"><table>
+    <thead><tr><th>구분</th><th>집행일수</th><th>연 광고비</th><th>연간 계약 대비</th><th>증감률</th></tr></thead>
+    <tbody>
+    <tr class="base"><td>연간 계약 (현행)</td><td>365일</td><td>36,000,000원</td><td></td><td></td></tr>
+    <tr><td><span class="tag a">A</span>신작 오픈</td><td>159일</td><td>21,430,000원</td><td>-14,570,000원</td><td><span class="chip pos">-40.5%</span></td></tr>
+    <tr><td><span class="tag b">B</span>신작 + 업데이트</td><td>248일</td><td>33,430,000원</td><td>-2,570,000원</td><td><span class="chip pos">-7.1%</span></td></tr>
+    </tbody></table></div>
+  <ul class="b" style="margin-top:14px">
+    <li>손익분기: 연 8.8개월(약 267일) 이상 집행하면 연간 계약이 더 저렴</li>
+    <li>B안은 4~6일짜리 짧은 공백까지 중단·재개해야 하므로 실제 운영이 어려움
+      <ul><li>1. 20.~11. 4. 연속 집행(289일) 시 38,960,000원으로 연간 계약보다 2,960,000원 증가</li></ul></li>
+  </ul>
+</section>
+
+<section>
+  <h2 class="sec"><span class="n">4</span>효과 변동 예측</h2>
+  <p class="secLead">2026년 1~10월 실적을 일할 계산해 대입, ROAS = (가입자 수익 + 로그인 수익) ÷ 광고비</p>
+  <div class="tbl"><table>
+    <thead><tr><th>구분</th><th>광고비</th><th>수익(가입+로그인)</th><th>ROAS</th><th>수익-광고비</th></tr></thead>
+    <tbody>
+    <tr class="base"><td>연간 집행 (실적)</td><td>30,000,000</td><td>138,790,000</td><td>463%</td><td>108,790,000</td></tr>
+    <tr><td><span class="tag a">A</span>155일</td><td>20,890,000</td><td>74,530,000</td><td>357%</td><td>53,630,000</td></tr>
+    <tr><td><span class="tag b">B</span>244일</td><td>32,890,000</td><td>124,090,000</td><td>377%</td><td>91,200,000</td></tr>
+    </tbody></table></div>
+
+  <h3>연간 집행 대비 증감</h3>
+  <div class="compare">
+    <div class="k hd"></div><div class="hd ca">A안<small>신작 오픈 시</small></div><div class="hd cb">B안<small>신작 + 업데이트</small></div>
+    <div class="k">광고비</div><div class="pos"><b>-911만원</b></div><div class="neg"><b>+289만원</b></div>
+    <div class="k">수익</div><div class="neg"><b>-6,430만원</b> (-46%)</div><div class="neg"><b>-1,470만원</b> (-11%)</div>
+    <div class="k">ROAS</div><div class="neg"><b>-106%p</b> (463% → 357%)</div><div class="neg"><b>-86%p</b> (463% → 377%)</div>
+    <div class="k">순효과</div><div class="neg"><b>-5,520만원</b></div><div class="neg"><b>-1,760만원</b></div>
+  </div>
+  <p class="cap">1~10월 데이터 범위 안의 이슈 일수 기준(A안 155일, B안 244일), 11월분은 제외</p>
+</section>
+
+<section>
+  <h2 class="sec"><span class="n">5</span>주요 분석 내용</h2>
+  <p class="secLead">성과가 리니지 계열 이슈에 집중되어 있고, 시장 흐름의 영향이 큼</p>
+  <div class="findings">
+    <div><b>83%</b><span>2~5월 수익 비중 (1억 1,560만원)</span></div>
+    <div><b>56~174%</b><span>하반기 신작 기간 ROAS</span></div>
+    <div><b>31~37만건</b><span>월 클릭수, 이슈와 관계없이 일정</span></div>
+  </div>
+  <ul class="b" style="margin-top:16px">
+    <li>A안에서 빠지는 3월 말~5월(리니지M ContiNew 등) 구간의 수익이 큼
+      <ul><li>4~5월 수익 3,750만원, ROAS 744% · 506%</li></ul></li>
+    <li>하반기 신작(솔:인챈트 · 제우스 · 이클립스 · 도깨비의세계)은 ROAS가 낮음
+      <ul><li>비이슈 성격의 1월(204%)보다도 낮아, 신작이라고 해서 광고 효과가 크지는 않음</li></ul></li>
+    <li>클릭수는 매월 일정 → 이슈와 관계없이 고정 노출로 판단</li>
+    <li>플레이게토(광고비 미발생 채널)도 2~4월 급증 등 같은 추이
+      <ul><li>PC방 광고 성과(포레런처 기준)는 시장 이슈 흐름의 영향이 큼</li></ul></li>
+  </ul>
+</section>
+
+<section>
+  <h2 class="sec"><span class="n">6</span>결론(안)</h2>
+  <p class="secLead">두 안 모두 비용 절감 폭보다 효과 감소 폭이 큼</p>
+  <div class="factors">
+    <div class="factor up">
+      <h3>이슈 시점 집행 시</h3>
+      <ul>
+        <li>A안: 비용 40% 절감, 수익 46% 감소</li>
+        <li>B안: 비용 절감 7%에 그치고, 효과도 소폭 하락</li>
+        <li>할인 포기분(37%)을 집행 일수 감소로 상쇄하지 못함</li>
+      </ul>
+    </div>
+    <div class="factor down">
+      <h3>보완 방안</h3>
+      <ul>
+        <li>연간 계약 안에서 이슈 시점에 소재를 집중 교체해 효율 개선</li>
+        <li>예산 절감이 우선이라면 A안을 검토하되, 대형 타이틀 업데이트(리니지 계열)는 집행 기간에 포함</li>
+      </ul>
+    </div>
+  </div>
+  <div class="rec">현행 연간 계약(36,000,000원) 유지가 효율 면에서 유리할 것으로 판단됨</div>
+</section>
+
+<section>
+  <h2 class="sec"><span class="n">7</span>확인 필요 사항</h2>
+  <ul class="b">
+    <li>2027 주요 신작 오픈 · 업데이트 일정</li>
+    <li>매체사 일할 · 단기 부킹 가능 여부</li>
+    <li>비수기 부킹 시 원하는 시점 구좌 확보 가능 여부 (포레런처 1구좌 고정)</li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  <p>자료: 2026 포레런처 · 플레이게토 광고효과보고서(1~10월), NMP 2027 연간 캠페인 제안서(2026. 11. 9.), 아이템매니아 2026 이벤트 일정</p>
+  <p>금액은 VAT 별도, 효과 예측은 월 실적을 일수 비례로 나누어 산정</p>
+</footer>
+
+</article>
+</body>
+</html>
